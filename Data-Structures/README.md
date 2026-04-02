@@ -1,9 +1,41 @@
-The practicing sequence could be `Linked List` -> `Stack n Queue` -> `Binary Tree` -> `Binary Search Tree`.
+# 자료구조 실습 가이드 (C)
 
+이 디렉터리는 C 언어와 포인터를 기반으로 자료구조를 직접 구현하는 실습 공간입니다.
 
-Approperiate `steps` to do each question: **Read the question's requirement in question sheet -> Find the corresponding main frame and copy it to your C compiler, i.e. Code::Block -> Finish the function part -> Try compiling and input some test cases.**
-***
+## 1. 학습 취지
+핵심 취지는 다음 세 가지입니다.
 
-The main frames of each question are provided such that the function part is left empty for you to write and fill in the blank to complete the question. Basic functionalities like `POP/PUSH/DEQUEUE/ENQUEUE/REMOVE_LINKED_NODE/FIND_LINKED_NODE` are already provided in the main frame. You don't need to write these basic functions.
+1. 추상 개념을 코드로 환원하는 훈련
+자료구조는 개념을 읽을 때보다 직접 구현할 때 이해의 빈틈이 드러납니다. 포인터 연결, 삽입/삭제, 메모리 사용 흐름을 코드로 확인하는 것이 목표입니다.
 
-These questions only illustrate some basis of Data Structure. However, they can be your keys of the door to new world of CS. After finishing these questions, you may have a brief view of what the Data Structure is.
+2. 메모리 관점의 사고 훈련
+값 중심 사고에서 벗어나, 주소와 참조를 기준으로 자료구조 동작을 설명할 수 있어야 합니다.
+
+3. 설명 가능한 구현 능력 확보
+정답 코드 작성뿐 아니라, 왜 그렇게 구현했는지 근거를 설명할 수 있어야 합니다.
+
+## 2. 권장 풀이 순서
+`Linked List -> Stack and Queue -> Binary Tree -> Binary Search Tree`
+
+## 3. 문제 풀이 방법
+1. 각 폴더의 문제 PDF에서 요구사항을 먼저 읽습니다.
+2. 해당 `Q*_*.c` 파일의 미구현 함수(빈 함수)를 채웁니다.
+3. 컴파일 후 직접 입력을 넣어 정상 동작을 확인합니다.
+4. 빈 구조, 원소 1개, 경계값, 중복값 등 엣지 케이스를 점검합니다.
+
+## 4. 구현 시 체크포인트
+- 포인터 갱신 순서가 올바른가
+- 동적 할당/해제가 균형을 이루는가
+- 자료구조 불변식(연결 상태, 정렬 조건 등)이 유지되는가
+- 시간복잡도 관점에서 연산 선택이 타당한가
+
+## 5. 컴파일 예시
+```bash
+cd Data-Structures/Binary_Search_Tree
+gcc Q1_F_BST.c -o Q1_F_BST
+./Q1_F_BST
+```
+
+## 6. 참고
+- 일부 기본 보조 함수(예: enqueue/dequeue 등)는 스켈레톤에 제공됩니다.
+- 실습의 핵심은 제공된 틀을 활용해 요구된 핵심 로직을 정확히 구현하는 것입니다.
