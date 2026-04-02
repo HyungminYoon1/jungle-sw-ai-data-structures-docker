@@ -1,0 +1,45 @@
+# C/C++ build artifacts
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.gch
+*.pch
+*.dSYM/
+
+# Runtime/debug/profiling artifacts
+core
+core.*
+gmon.out
+*.gcda
+*.gcno
+*.gcov
+*.prof
+*.profraw
+*.profdata
+
+# Common build directories/files
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+
+# Locally compiled question binaries (no extension)
+Data-Structures/**/Q[0-9]*_[A-Z]_*
+!Data-Structures/**/*.c
+!Data-Structures/**/*.pdf
+
+# Editor/OS temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+
+local/
