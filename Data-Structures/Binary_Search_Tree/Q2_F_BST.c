@@ -2,7 +2,8 @@
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section F - Binary Search Trees Questions
-Purpose: Implementing the required functions for Question 2 */
+Purpose: Implementing the required functions for Question 2
+한국어: 문제 2에서 요구하는 함수를 구현하는 것이 목적 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -16,20 +17,25 @@ typedef struct _bstnode{
 	struct _bstnode *left;
 	struct _bstnode *right;
 } BSTNode;   // You should not change the definition of BSTNode
+// 한국어: BSTNode의 정의는 변경하지 마세요
 
 typedef struct _stackNode{
 	BSTNode *data;
 	struct _stackNode *next;
 }StackNode; // You should not change the definition of StackNode
+// 한국어: StackNode의 정의는 변경하지 마세요
 
 typedef struct _stack
 {
 	StackNode *top;
 }Stack; // You should not change the definition of Stack
+// 한국어: Stack의 정의는 변경하지 마세요
 
 ///////////////////////// function prototypes ////////////////////////////////////
+///////////////////////// 한국어: 함수 원형 선언 ////////////////////////////////////
 
 // You should not change the prototypes of these functions
+// 한국어: 이 함수들의 원형은 변경하지 마세요
 void inOrderTraversal(BSTNode *node);
 
 void insertBSTNode(BSTNode **node, int value);
@@ -48,6 +54,7 @@ int main()
 	c = 1;
 
 	//Initialize the Binary Search Tree as an empty Binary Search Tree
+// 한국어: 이진 탐색 트리를 빈 트리로 초기화
 	BSTNode *root;
 	root = NULL;
 
@@ -71,6 +78,7 @@ int main()
 		case 2:
 			printf("The resulting in-order traversal of the binary search tree is: ");
 			inOrderTraversal(root); // You need to code this function
+// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("\n");
 			break;
 		case 0:
@@ -91,6 +99,7 @@ int main()
 void inOrderTraversal(BSTNode *root)
 {
 	 /* add your code here */
+/* 한국어: 여기에 코드를 작성하세요 */
 }
 
 ///////////////////////////////////////////////////////////////////////////////

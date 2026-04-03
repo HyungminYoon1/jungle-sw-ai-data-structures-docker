@@ -2,7 +2,8 @@
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section E - Binary Trees Questions
-Purpose: Implementing the required functions for Question 3 */
+Purpose: Implementing the required functions for Question 3
+한국어: 문제 3에서 요구하는 함수를 구현하는 것이 목적 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -16,6 +17,7 @@ typedef struct _btnode
     struct _btnode *left;
     struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
+// 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -31,8 +33,10 @@ typedef struct _stack
 } Stack;
 
 ///////////////////////// function prototypes ////////////////////////////////////
+///////////////////////// 한국어: 함수 원형 선언 ////////////////////////////////////
 
 // You should not change the prototypes of these functions
+// 한국어: 이 함수들의 원형은 변경하지 마세요
 int countOneChildNodes(BTNode *node);
 
 BTNode *createBTNode(int item);
@@ -102,6 +106,7 @@ int countOneChildNodes(BTNode *node)
 
 {
     /* add your code here */
+/* 한국어: 여기에 코드를 작성하세요 */
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
