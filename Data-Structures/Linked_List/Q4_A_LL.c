@@ -94,7 +94,47 @@ int main()
 void moveEvenItemsToBack(LinkedList *ll)
 {
 	/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* 한국어: 여기에 코드를 작성하세요 */
+	// 짝수를 뒤로 보내기
+
+	ListNode *cur = ll->head;
+	ListNode *nextNode = NULL;
+	ListNode *evenHead = NULL, *evenTail = NULL;
+	ListNode *oddHead = NULL, *oddTail = NULL;
+
+	if (ll == NULL || ll->head == NULL)
+        return;
+	
+	while(cur != NULL) {
+		nextNode = cur->next;
+		cur->next = NULL;
+
+		if(cur->item %2 == 0) {
+			if(evenHead == NULL){
+				evenHead = cur;
+				evenTail = cur;
+			} else {
+				evenTail->next = cur;
+				evenTail = cur;
+			}
+		}else {
+			if(oddHead == NULL){
+				oddHead = cur;
+				oddTail = cur;
+			} else {
+				oddTail->next = cur;
+				oddTail = cur;
+			}
+		}
+		cur = nextNode; // 다음 노드 검토
+	}
+	
+	if (oddHead == NULL) {
+        ll->head = evenHead;
+    } else {
+        oddTail->next = evenHead;
+        ll->head = oddHead;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -162,7 +202,7 @@ int insertNode(LinkedList *ll, int index, int value){
 		return -1;
 
 	// If empty list or inserting first node, need to update head pointer
-// 한국어: 리스트가 비어 있거나 첫 노드를 삽입하는 경우 head 포인터를 갱신해야 함
+	// 한국어: 리스트가 비어 있거나 첫 노드를 삽입하는 경우 head 포인터를 갱신해야 함
 	if (ll->head == NULL || index == 0){
 		cur = ll->head;
 		ll->head = malloc(sizeof(ListNode));
@@ -174,9 +214,9 @@ int insertNode(LinkedList *ll, int index, int value){
 
 
 	// Find the nodes before and at the target position
-// 한국어: 목표 위치의 이전 노드와 해당 위치의 노드를 찾음
 	// Create a new node and reconnect the links
-// 한국어: 새 노드를 만들고 링크를 다시 연결함
+	// 한국어: 목표 위치의 이전 노드와 해당 위치의 노드를 찾음
+	// 한국어: 새 노드를 만들고 링크를 다시 연결함
 	if ((pre = findNode(ll, index - 1)) != NULL){
 		cur = pre->next;
 		pre->next = malloc(sizeof(ListNode));
@@ -195,12 +235,12 @@ int removeNode(LinkedList *ll, int index){
 	ListNode *pre, *cur;
 
 	// Highest index we can remove is size-1
-// 한국어: 제거할 수 있는 가장 큰 인덱스는 size-1
+	// 한국어: 제거할 수 있는 가장 큰 인덱스는 size-1
 	if (ll == NULL || index < 0 || index >= ll->size)
 		return -1;
 
 	// If removing first node, need to update head pointer
-// 한국어: 첫 노드를 제거하는 경우 head 포인터를 갱신해야 함
+	// 한국어: 첫 노드를 제거하는 경우 head 포인터를 갱신해야 함
 	if (index == 0){
 		cur = ll->head->next;
 		free(ll->head);
@@ -211,9 +251,9 @@ int removeNode(LinkedList *ll, int index){
 	}
 
 	// Find the nodes before and after the target position
-// 한국어: 목표 위치의 이전 노드와 이후 노드를 찾음
 	// Free the target node and reconnect the links
-// 한국어: 대상 노드를 해제하고 링크를 다시 연결함
+	// 한국어: 목표 위치의 이전 노드와 이후 노드를 찾음
+	// 한국어: 대상 노드를 해제하고 링크를 다시 연결함
 	if ((pre = findNode(ll, index - 1)) != NULL){
 
 		if (pre->next == NULL)

@@ -17,14 +17,14 @@ typedef struct _listnode
 	int item;
 	struct _listnode *next;
 } ListNode;			// You should not change the definition of ListNode
-// 한국어: ListNode의 정의는 변경하지 마세요
+					// 한국어: ListNode의 정의는 변경하지 마세요
 
 typedef struct _linkedlist
 {
 	int size;
 	ListNode *head;
 } LinkedList;			// You should not change the definition of LinkedList
-// 한국어: LinkedList의 정의는 변경하지 마세요
+						// 한국어: LinkedList의 정의는 변경하지 마세요
 
 
 //////////////////////// function prototypes /////////////////////////////////////
@@ -50,7 +50,7 @@ int main()
 
 	LinkedList ll;
 	//Initialize the linked list 1 as an empty linked list
-// 한국어: 연결 리스트 1을 빈 연결 리스트로 초기화
+	// 한국어: 연결 리스트 1을 빈 연결 리스트로 초기화
 	ll.head = NULL;
 	ll.size = 0;
 
@@ -75,7 +75,7 @@ int main()
 			break;
 		case 2:
 			moveMaxToFront(&(ll.head));  // You need to code this function
-// 한국어: 이 함수는 직접 구현해야 합니다
+										// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("The resulting linked list after moving largest stored value to the front of the list is: ");
 			printList(&ll);
 			removeAllItems(&ll);
@@ -96,7 +96,36 @@ int main()
 int moveMaxToFront(ListNode **ptrHead)
 {
     /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* 한국어: 여기에 코드를 작성하세요 */
+
+	ListNode *cur = NULL, *prev = NULL; // ptrHead는 head의 주소, *ptrHead는 실제 head
+	ListNode *maxNode = NULL, *maxPrev = NULL;
+
+	// head 변수 주소 자체가 잘못 들어온 경우 또는 리스트가 비어 있는 경우
+	if (ptrHead == NULL || *ptrHead == NULL) { 
+		return -1;
+	}
+
+	cur = *ptrHead;
+	maxNode = cur;
+
+	while(cur != NULL) { // head부터 끝까지 본다
+		if (cur->item > maxNode->item) { // 제일 큰 노드를 기억한다
+			maxNode = cur;
+			maxPrev = prev;
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+	
+	if (maxNode != *ptrHead) { // 최대 노드가 head가 아니면 원래 자리에서 끊는다
+		maxPrev->next = maxNode->next; // 최댓값 노드 빼내기 (최댓값 노드의 이전 노드와 다음 노드를 연결)
+		maxNode->next = *ptrHead; // 최댓값 노드의 다음 노드를 헤드로 지정
+		*ptrHead = maxNode; // 리스트의 실제 헤드를 최댓값 노드로 지정
+	}
+
+	// 최대 노드가 head일 경우 별도의 조치 불필요
+	return 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -148,7 +177,7 @@ int insertNode(LinkedList *ll, int index, int value){
 		return -1;
 
 	// If empty list or inserting first node, need to update head pointer
-// 한국어: 리스트가 비어 있거나 첫 노드를 삽입하는 경우 head 포인터를 갱신해야 함
+	// 한국어: 리스트가 비어 있거나 첫 노드를 삽입하는 경우 head 포인터를 갱신해야 함
 	if (ll->head == NULL || index == 0){
 		cur = ll->head;
 		ll->head = malloc(sizeof(ListNode));
@@ -160,9 +189,9 @@ int insertNode(LinkedList *ll, int index, int value){
 
 
 	// Find the nodes before and at the target position
-// 한국어: 목표 위치의 이전 노드와 해당 위치의 노드를 찾음
 	// Create a new node and reconnect the links
-// 한국어: 새 노드를 만들고 링크를 다시 연결함
+	// 한국어: 목표 위치의 이전 노드와 해당 위치의 노드를 찾음
+	// 한국어: 새 노드를 만들고 링크를 다시 연결함
 	if ((pre = findNode(ll, index - 1)) != NULL){
 		cur = pre->next;
 		pre->next = malloc(sizeof(ListNode));
@@ -181,12 +210,12 @@ int removeNode(LinkedList *ll, int index){
 	ListNode *pre, *cur;
 
 	// Highest index we can remove is size-1
-// 한국어: 제거할 수 있는 가장 큰 인덱스는 size-1
+	// 한국어: 제거할 수 있는 가장 큰 인덱스는 size-1
 	if (ll == NULL || index < 0 || index >= ll->size)
 		return -1;
 
 	// If removing first node, need to update head pointer
-// 한국어: 첫 노드를 제거하는 경우 head 포인터를 갱신해야 함
+	// 한국어: 첫 노드를 제거하는 경우 head 포인터를 갱신해야 함
 	if (index == 0){
 		cur = ll->head->next;
 		free(ll->head);
@@ -197,9 +226,9 @@ int removeNode(LinkedList *ll, int index){
 	}
 
 	// Find the nodes before and after the target position
-// 한국어: 목표 위치의 이전 노드와 이후 노드를 찾음
+	// 한국어: 목표 위치의 이전 노드와 이후 노드를 찾음
 	// Free the target node and reconnect the links
-// 한국어: 대상 노드를 해제하고 링크를 다시 연결함
+	// 한국어: 대상 노드를 해제하고 링크를 다시 연결함
 	if ((pre = findNode(ll, index - 1)) != NULL){
 
 		if (pre->next == NULL)

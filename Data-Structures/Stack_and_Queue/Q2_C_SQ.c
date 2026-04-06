@@ -18,20 +18,20 @@ typedef struct _listnode
 	int item;
 	struct _listnode *next;
 } ListNode;	// You should not change the definition of ListNode
-// 한국어: ListNode의 정의는 변경하지 마세요
+			// 한국어: ListNode의 정의는 변경하지 마세요
 
 typedef struct _linkedlist
 {
 	int size;
 	ListNode *head;
 } LinkedList;	// You should not change the definition of LinkedList
-// 한국어: LinkedList의 정의는 변경하지 마세요
+				// 한국어: LinkedList의 정의는 변경하지 마세요
 
 typedef struct _stack
 {
 	LinkedList ll;
 }Stack;  // You should not change the definition of Stack
-// 한국어: Stack의 정의는 변경하지 마세요
+			// 한국어: Stack의 정의는 변경하지 마세요
 
 ///////////////////////// function prototypes ////////////////////////////////////
 ///////////////////////// 한국어: 함수 원형 선언 ////////////////////////////////////
@@ -62,12 +62,12 @@ int main()
 
 	c = 1;
 	// Initialize the linked list as an empty linked list
-// 한국어: 연결 리스트를 빈 연결 리스트로 초기화
+	// 한국어: 연결 리스트를 빈 연결 리스트로 초기화
 	ll.head = NULL;
 	ll.size = 0;
 
 	// Initalize the stack as an empty stack
-// 한국어: 스택을 빈 스택으로 초기화
+	// 한국어: 스택을 빈 스택으로 초기화
 	s.ll.head = NULL;
 	s.ll.size = 0;
 
@@ -92,13 +92,13 @@ int main()
 			break;
 		case 2:
 			createStackFromLinkedList(&ll, &s); // You need to code this function
-// 한국어: 이 함수는 직접 구현해야 합니다
+												// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("The resulting stack is: ");
 			printList(&(s.ll));
 			break;
 		case 3:
 			removeEvenValues(&s); // You need to code this function
-// 한국어: 이 함수는 직접 구현해야 합니다
+									// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("The resulting stack after removing even integers is: ");
 			printList(&(s.ll));
 			removeAllItemsFromStack(&s);
@@ -124,13 +124,50 @@ int main()
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
     /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* 한국어: 여기에 코드를 작성하세요 */
+
+	if (s == NULL)
+		return;
+	
+	// 스택 초기화
+	removeAllItemsFromStack(s);
+
+	if (ll == NULL || ll->head == NULL || ll->size == 0 )
+		return;
+	
+	int count = ll->size;
+
+	for (int i = 0; i < count; i++) {
+		int item = findNode(ll, i)->item;
+		push(s, item);
+	}
 }
 
 void removeEvenValues(Stack *s)
 {
 	/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* 한국어: 여기에 코드를 작성하세요 */
+
+	if (s == NULL || s->ll.head == NULL || s->ll.size == 0)
+		return;
+
+	// 임시 스택 선언 및 초기화
+	Stack tempStack;
+	Stack tempStack = {0}; // tempStack.ll.head = NULL; tempStack.ll.size = 0; 을 의미함. (포인터의 0 초기값은 NULL로 취급되고 정수의 0 초기값은 그대로 0이기 대문)
+	
+	int count = s->ll.size;
+
+	for (int i = 0; i < count; i++) {
+		int item = pop(s);
+		if (item % 2 == 1) {
+			push(&tempStack, item); // &tempStack은 전체 구조체를 가리키는 주소
+		}
+	}
+
+	while(!isEmptyStack(&tempStack)) {
+		int item = pop(&tempStack);
+		push(s, item);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +274,7 @@ int insertNode(LinkedList *ll, int index, int value){
 		return -1;
 
 	// If empty list or inserting first node, need to update head pointer
-// 한국어: 리스트가 비어 있거나 첫 노드를 삽입하는 경우 head 포인터를 갱신해야 함
+	// 한국어: 리스트가 비어 있거나 첫 노드를 삽입하는 경우 head 포인터를 갱신해야 함
 	if (ll->head == NULL || index == 0){
 		cur = ll->head;
 		ll->head = malloc(sizeof(ListNode));
@@ -253,9 +290,9 @@ int insertNode(LinkedList *ll, int index, int value){
 
 
 	// Find the nodes before and at the target position
-// 한국어: 목표 위치의 이전 노드와 해당 위치의 노드를 찾음
 	// Create a new node and reconnect the links
-// 한국어: 새 노드를 만들고 링크를 다시 연결함
+	// 한국어: 목표 위치의 이전 노드와 해당 위치의 노드를 찾음
+	// 한국어: 새 노드를 만들고 링크를 다시 연결함
 	if ((pre = findNode(ll, index - 1)) != NULL){
 		cur = pre->next;
 		pre->next = malloc(sizeof(ListNode));
@@ -278,12 +315,12 @@ int removeNode(LinkedList *ll, int index){
 	ListNode *pre, *cur;
 
 	// Highest index we can remove is size-1
-// 한국어: 제거할 수 있는 가장 큰 인덱스는 size-1
+	// 한국어: 제거할 수 있는 가장 큰 인덱스는 size-1
 	if (ll == NULL || index < 0 || index >= ll->size)
 		return -1;
 
 	// If removing first node, need to update head pointer
-// 한국어: 첫 노드를 제거하는 경우 head 포인터를 갱신해야 함
+	// 한국어: 첫 노드를 제거하는 경우 head 포인터를 갱신해야 함
 	if (index == 0){
 		cur = ll->head->next;
 		free(ll->head);
@@ -293,9 +330,9 @@ int removeNode(LinkedList *ll, int index){
 	}
 
 	// Find the nodes before and after the target position
-// 한국어: 목표 위치의 이전 노드와 이후 노드를 찾음
 	// Free the target node and reconnect the links
-// 한국어: 대상 노드를 해제하고 링크를 다시 연결함
+	// 한국어: 목표 위치의 이전 노드와 이후 노드를 찾음
+	// 한국어: 대상 노드를 해제하고 링크를 다시 연결함
 	if ((pre = findNode(ll, index - 1)) != NULL){
 
 		if (pre->next == NULL)
