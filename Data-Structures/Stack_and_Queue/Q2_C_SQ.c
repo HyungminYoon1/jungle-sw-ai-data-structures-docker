@@ -152,8 +152,7 @@ void removeEvenValues(Stack *s)
 		return;
 
 	// 임시 스택 선언 및 초기화
-	Stack tempStack;
-	Stack tempStack = {0}; // tempStack.ll.head = NULL; tempStack.ll.size = 0; 을 의미함. (포인터의 0 초기값은 NULL로 취급되고 정수의 0 초기값은 그대로 0이기 대문)
+	Stack tempStack = {0}; // Stack tempStack; tempStack.ll.head = NULL; tempStack.ll.size = 0; 을 의미함. (포인터의 0 초기값은 NULL로 취급되고 정수의 0 초기값은 그대로 0이기 대문)
 	
 	int count = s->ll.size;
 

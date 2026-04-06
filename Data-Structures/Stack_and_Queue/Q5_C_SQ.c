@@ -17,14 +17,14 @@ typedef struct _listnode
 	int item;
 	struct _listnode *next;
 } ListNode;	// You should not change the definition of ListNode
-// 한국어: ListNode의 정의는 변경하지 마세요
+			// 한국어: ListNode의 정의는 변경하지 마세요
 
 typedef struct _linkedlist
 {
 	int size;
 	ListNode *head;
 } LinkedList;	// You should not change the definition of LinkedList
-// 한국어: LinkedList의 정의는 변경하지 마세요
+				// 한국어: LinkedList의 정의는 변경하지 마세요
 
 
 typedef struct _queue
@@ -119,8 +119,23 @@ int main()
 
 void recursiveReverse(Queue *q)
 {
-/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* add your code here */
+	/* 한국어: 여기에 코드를 작성하세요 */
+
+	if (q == NULL)
+		return;
+	
+	if (q->ll.head == NULL || q->ll.size <= 1)
+		return;
+	
+	// 첫 번째 원소를 빼내기
+	int item = dequeue(q);
+
+	// 나머지 큐를 재귀적으로 뒤집었다고 가정
+	recursiveReverse(q);
+
+	// 빼낸 원소를 다시 큐에 넣기
+	enqueue(q, item);
 }
 
 //////////////////////////////////////////////////////////////////

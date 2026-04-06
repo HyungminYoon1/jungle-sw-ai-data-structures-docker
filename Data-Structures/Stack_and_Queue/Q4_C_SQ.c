@@ -96,7 +96,7 @@ int main()
 			break;
 		case 2:
 			reverse(&q); // You need to code this function
-// 한국어: 이 함수는 직접 구현해야 합니다
+						// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("The resulting queue after reversing its elements is: ");
 			printList(&(q.ll));
 			removeAllItems(&(q.ll));
@@ -117,8 +117,33 @@ int main()
 
 void reverse(Queue *q)
 {
-/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* add your code here */
+	/* 한국어: 여기에 코드를 작성하세요 */
+
+	if (q == NULL)
+		return;
+
+	if (q->ll.head == NULL || q->ll.size <= 1) {
+		return;
+	}
+
+	// 임시 저장용 스택 초기화
+	Stack tempStack = {0};
+
+	int count = q->ll.size;
+
+	// 큐에서 순서대로 꺼내서 스택에 넣기
+	for (int i = 0; i < count; i++) {
+		int item = dequeue(q);
+		push(&tempStack, item);
+	}
+
+	// 원래의 큐의 마지막 원소부터 역순으로 스택에서 꺼내서 다시 큐에 집어넣기
+	for (int i = 0; i < count; i++) {
+		int item = pop(&tempStack);
+		enqueue(q, item);
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
