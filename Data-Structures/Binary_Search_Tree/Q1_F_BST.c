@@ -19,13 +19,13 @@ typedef struct _bstnode{
 	struct _bstnode *left;
 	struct _bstnode *right;
 } BSTNode;   // You should not change the definition of BSTNode
-// 한국어: BSTNode의 정의는 변경하지 마세요
+			// 한국어: BSTNode의 정의는 변경하지 마세요
 
 typedef struct _QueueNode {
 	BSTNode *data;
 	struct _QueueNode *nextPtr;
 }QueueNode; // You should not change the definition of QueueNode
-// 한국어: QueueNode의 정의는 변경하지 마세요
+			// 한국어: QueueNode의 정의는 변경하지 마세요
 
 
 typedef struct _queue
@@ -33,7 +33,7 @@ typedef struct _queue
 	QueueNode *head;
 	QueueNode *tail;
 }Queue; // You should not change the definition of queue
-// 한국어: queue의 정의는 변경하지 마세요
+		// 한국어: queue의 정의는 변경하지 마세요
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -56,7 +56,7 @@ int main()
 	c = 1;
 
 	//Initialize the Binary Search Tree as an empty Binary Search Tree
-// 한국어: 이진 탐색 트리를 빈 트리로 초기화
+	// 한국어: 이진 탐색 트리를 빈 트리로 초기화
 	BSTNode *root;
 	root = NULL;
 
@@ -80,7 +80,7 @@ int main()
 		case 2:
 			printf("The resulting level-order traversal of the binary search tree is: ");
 			levelOrderTraversal(root); // You need to code this function
-// 한국어: 이 함수는 직접 구현해야 합니다
+										// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("\n");
 			break;
 		case 0:
@@ -101,7 +101,7 @@ int main()
 void levelOrderTraversal(BSTNode* root)
 {
 	/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* 한국어: 여기에 코드를 작성하세요 */
 
 	if (root == NULL) {
 		return;
@@ -124,8 +124,6 @@ void levelOrderTraversal(BSTNode* root)
 			enqueue(&head, &tail, cur->right);
 		};
 	}
-
-    
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -163,22 +161,22 @@ void insertBSTNode(BSTNode **node, int value){
 void enqueue(QueueNode **headPtr, QueueNode **tailPtr, BSTNode *node)
 {
 	// dynamically allocate memory
-// 한국어: 동적으로 메모리 할당
+	// 한국어: 동적으로 메모리 할당
 	QueueNode *newPtr = malloc(sizeof(QueueNode));
 
 	// if newPtr does not equal NULL
-// 한국어: newPtr가 NULL이 아니면
+	// 한국어: newPtr가 NULL이 아니면
 	if (newPtr != NULL) {
 		newPtr->data = node;
 		newPtr->nextPtr = NULL;
 
 		// if queue is empty, insert at head
-// 한국어: 큐가 비어 있으면 head에 삽입
+		// 한국어: 큐가 비어 있으면 head에 삽입
 		if (isEmpty(*headPtr)) {
 			*headPtr = newPtr;
 		}
 		else { // insert at tail
-// 한국어: tail에 삽입
+				// 한국어: tail에 삽입
 			(*tailPtr)->nextPtr = newPtr;
 		}
 

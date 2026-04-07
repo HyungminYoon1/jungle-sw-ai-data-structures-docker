@@ -54,7 +54,7 @@ int main()
 	c = 1;
 
 	//Initialize the Binary Search Tree as an empty Binary Search Tree
-// 한국어: 이진 탐색 트리를 빈 트리로 초기화
+	// 한국어: 이진 탐색 트리를 빈 트리로 초기화
 	BSTNode *root;
 	root = NULL;
 
@@ -78,7 +78,7 @@ int main()
 		case 2:
 			printf("The resulting in-order traversal of the binary search tree is: ");
 			inOrderTraversal(root); // You need to code this function
-// 한국어: 이 함수는 직접 구현해야 합니다
+									// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("\n");
 			break;
 		case 0:
@@ -98,8 +98,17 @@ int main()
 
 void inOrderTraversal(BSTNode *root)
 {
-	 /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* add your code here */
+	/* 한국어: 여기에 코드를 작성하세요 */
+	
+	// in-order(중위순회) 결과 출력: Left -> Root -> Right
+
+	// 종료 조건
+	if (root == NULL) return;
+
+	inOrderTraversal(root->left); // 좌측
+	printf("%d ", root->item); // 루트
+	inOrderTraversal(root->right); // 우측
 }
 
 ///////////////////////////////////////////////////////////////////////////////
