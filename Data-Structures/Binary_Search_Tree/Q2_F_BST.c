@@ -96,12 +96,10 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+/* # 재귀로 풀기
 void inOrderTraversal(BSTNode *root)
 {
-	/* add your code here */
-	/* 한국어: 여기에 코드를 작성하세요 */
-	
-	// in-order(중위순회) 결과 출력: Left -> Root -> Right
+	// 요구사항: in-order(중위순회) 결과 출력: Left -> Root -> Right
 
 	// 종료 조건
 	if (root == NULL) return;
@@ -109,6 +107,39 @@ void inOrderTraversal(BSTNode *root)
 	inOrderTraversal(root->left); // 좌측
 	printf("%d ", root->item); // 루트
 	inOrderTraversal(root->right); // 우측
+}
+*/
+
+// 스택으로 풀기
+void inOrderTraversal(BSTNode *root)
+{
+	/* add your code here */
+	/* 한국어: 여기에 코드를 작성하세요 */
+	// 요구사항: in-order(중위순회) 결과 출력: Left -> Root -> Right
+
+	Stack s;
+    s.top = NULL;
+
+    BSTNode *curr = root;
+
+    // 현재 노드가 있거나 스택이 비어 있지 않으면 반복
+    while (curr != NULL || !isEmpty(&s))
+    {
+        // 왼쪽 자식으로 끝까지 내려가며 스택에 push
+        while (curr != NULL)
+        {
+            push(&s, curr);
+            curr = curr->left;
+        }
+
+        // 가장 최근에 저장한 노드를 꺼내 출력
+        curr = pop(&s);
+        printf("%d ", curr->item);
+
+        // 오른쪽 자식이 있으면 그쪽으로 이동
+        curr = curr->right;
+    }
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

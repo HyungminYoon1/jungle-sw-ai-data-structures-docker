@@ -102,10 +102,12 @@ void levelOrderTraversal(BSTNode* root)
 {
 	/* add your code here */
 	/* 한국어: 여기에 코드를 작성하세요 */
+	// 요구사항: BST를 level-order traversal(레벨 순서 순회) 로 출력
 
 	if (root == NULL) {
 		return;
 	}
+	
 	QueueNode *head = NULL;
 	QueueNode *tail = NULL;
 

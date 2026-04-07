@@ -17,19 +17,19 @@ typedef struct _bstnode{
 	struct _bstnode *left;
 	struct _bstnode *right;
 } BSTNode;   // You should not change the definition of BSTNode
-// 한국어: BSTNode의 정의는 변경하지 마세요
+			// 한국어: BSTNode의 정의는 변경하지 마세요
 
 typedef struct _stackNode{
 	BSTNode *data;
 	struct _stackNode *next;
 }StackNode; // You should not change the definition of StackNode
-// 한국어: StackNode의 정의는 변경하지 마세요
+			// 한국어: StackNode의 정의는 변경하지 마세요
 
 typedef struct _stack
 {
 	StackNode *top;
 }Stack; // You should not change the definition of Stack
-// 한국어: Stack의 정의는 변경하지 마세요
+		// 한국어: Stack의 정의는 변경하지 마세요
 
 ///////////////////////// function prototypes ////////////////////////////////////
 ///////////////////////// 한국어: 함수 원형 선언 ////////////////////////////////////
@@ -56,7 +56,7 @@ int main()
 	c = 1;
 
 	//Initialize the Binary Search Tree as an empty Binary Search Tree
-// 한국어: 이진 탐색 트리를 빈 트리로 초기화
+	// 한국어: 이진 탐색 트리를 빈 트리로 초기화
 	BSTNode * root;
 	root = NULL;
 
@@ -80,7 +80,7 @@ int main()
 		case 2:
 			printf("The resulting pre-order traversal of the binary search tree is: ");
 			preOrderIterative(root); // You need to code this function
-// 한국어: 이 함수는 직접 구현해야 합니다
+									// 한국어: 이 함수는 직접 구현해야 합니다
 			printf("\n");
 			break;
 		case 0:
@@ -100,8 +100,35 @@ int main()
 
 void preOrderIterative(BSTNode *root)
 {
-	 /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+	/* add your code here */
+	/* 한국어: 여기에 코드를 작성하세요 */
+
+	// 요구사항: BST를 pre-order 순회 결과로 출력 (root -> left -> right)
+	// 문제의 함수 타입이 void 이므로 재귀가 아닌 stack 을 사용하라는 의도로 판단
+
+	if (root == NULL) {
+		return;
+	}
+	
+	// 스택 초기화
+	Stack s;
+    s.top = NULL;
+	push(&s, root);
+
+	while (!isEmpty(&s)) {
+        BSTNode *cur = pop(&s);
+        printf("%d ", cur->item); // 현재 pop된 노드 출력
+
+        if (cur->right != NULL) {
+            push(&s, cur->right); // 현재 노드의 오른쪽 자식 노드 푸시
+        }
+        if (cur->left != NULL) {
+            push(&s, cur->left); // 현재 노드의 왼쪽 자식 노드 푸시
+        }
+		/* 오른쪽을 먼저 푸시하는 이유: 스택은 나중에 넣은 것이 먼저 나오기 때문에 다음 출력에서 왼쪽이 먼저 출력됨 */
+    }
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
