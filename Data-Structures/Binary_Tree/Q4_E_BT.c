@@ -18,7 +18,7 @@ typedef struct _btnode
     struct _btnode *left;
     struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
-// 한국어: BTNode의 정의는 변경하지 마세요
+            // 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -108,7 +108,31 @@ int sumOfOddNodes(BTNode *node)
 
 {
     /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* 한국어: 여기에 코드를 작성하세요 */
+
+    // 요구사항: 이진트리 안에 있는 모든 홀수 값의 합을 반환하는 것
+
+    if (node == NULL) {
+        return 0;
+    }
+
+    // 재귀 탐색
+    int leftOddSum = sumOfOddNodes(node->left);
+    int rightOddSum = sumOfOddNodes(node->right);
+
+    // 현재 노드가 홀수일 경우
+    if (node->item %2 != 0) {
+        return node->item + leftOddSum + rightOddSum;
+    }
+    /* 참고사항
+        파이썬에서는 % 결과가 나누는 수가 양수(n)일 때 0 <= 결과 < n 범위로 나오지만, C에서는 -3 % 2 를 했을 때 -1 이 나올 수 있다.
+        따라서 'node->item %2 == 1' 를 기준으로 홀수를 판별하면 음수 홀수에 대해 실패할 수 있기 때문에 음수와 양수 모두 출력 결과가 같은 짝수를 기준으로 처리한다.
+
+        만약 특정 나머지를 제대로 판별하고자 한다면 ((k % n) + n) % n == r 꼴로 정규화가 필요하다.
+    */
+
+    // 현재 노드가 짝수일 경우
+    return leftOddSum + rightOddSum;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

@@ -16,7 +16,7 @@ typedef struct _btnode{
 	struct _btnode *left;
 	struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
-// 한국어: BTNode의 정의는 변경하지 마세요
+            // 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -120,8 +120,21 @@ int main()
 int identical(BTNode *tree1, BTNode *tree2)
 
 {
-   /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* add your code here */
+    /* 한국어: 여기에 코드를 작성하세요 */
+
+    // 두 트리가 구조적으로 같으면 1, 다르면 0 반환 (노드의 값은 달라도 상관없음)
+    // Check whether two trees are structurally identical. 에서 값은 상관없음을 알 수 있음.
+
+    // 종료 조건
+    if (tree1 == NULL && tree2 == NULL) return 1; // 모두 NULL 이면 1 반환    
+    if (tree1 == NULL || tree2 == NULL) return 0;
+
+    // if (tree1->item != tree2->item) return 0; // 값도 동일해야 할 경우 각 서브트리의 루트 값을 비교
+
+    // 재귀 탐색: 왼쪽 트리 및 오른쪽 트리 비교
+    return identical(tree1->left, tree2->left) && identical(tree1->right, tree2->right);
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////

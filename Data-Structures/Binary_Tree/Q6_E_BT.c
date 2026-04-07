@@ -18,7 +18,7 @@ typedef struct _btnode
     struct _btnode *left;
     struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
-// 한국어: BTNode의 정의는 변경하지 마세요
+            // 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -110,7 +110,22 @@ int main()
 void printSmallerValues(BTNode *node, int m)
 {
 	/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* 한국어: 여기에 코드를 작성하세요 */
+
+    // 요구사항: 트리 안의 값들 중 m보다 작은 값만 출력
+
+    if (node == NULL) {
+        return;
+    }
+
+    // 중위순회: 왼쪽 -> 루트 -> 오른쪽 순으로 출력
+    printSmallerValues(node->left, m); 
+
+    if (node->item < m) {
+        printf("%d ", node->item);
+    }
+
+    printSmallerValues(node->right, m);
 }
 
 //////////////////////////////////////////////////////////////////////////////////

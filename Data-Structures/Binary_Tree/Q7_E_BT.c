@@ -18,7 +18,7 @@ typedef struct _btnode
     struct _btnode *left;
     struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
-// 한국어: BTNode의 정의는 변경하지 마세요
+            // 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -107,7 +107,26 @@ int main()
 int smallestValue(BTNode *node)
 {
 	/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* 한국어: 여기에 코드를 작성하세요 */
+
+    // 요구사항: 이진트리 전체에서 가장 작은 값을 찾아 반환
+
+    // node == NULL 인 경우는 없다고 가정.
+
+    int minNum = node->item; // 현재 노드 값을 최소값 후보로 두고 자식 서브트리와 비교
+
+    // 재귀탐색: 노드가 NULL인 경우는 탐색 회피
+    if (node->left != NULL) {
+        int leftMinNum = smallestValue(node->left);
+        minNum = (minNum < leftMinNum ? minNum : leftMinNum); // 조건식 ? 참일 때 값 : 거짓일 때 값
+    }
+
+    if (node->right != NULL) {
+        int rightMinNum = smallestValue(node->right);
+        minNum = (minNum < rightMinNum ? minNum : rightMinNum);
+    }
+
+    return minNum;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

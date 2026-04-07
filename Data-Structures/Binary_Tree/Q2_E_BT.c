@@ -16,7 +16,7 @@ typedef struct _btnode{
 	struct _btnode *left;
 	struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
-// 한국어: BTNode의 정의는 변경하지 마세요
+            // 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -102,7 +102,17 @@ int maxHeight(BTNode *node)
 
 {
     /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* 한국어: 여기에 코드를 작성하세요 */
+    // 트리의 높이 구하기. (빈 트리는 높이 0, 루트만 있으면 높이 1 으로 구현함.)
+
+    if (node == NULL) {
+        return 0;
+    }
+
+    int left = maxHeight(node->left);
+    int right = maxHeight(node->right);
+    
+    return (left > right ? left : right) + 1; // max(left, right) + 1 의 의미
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

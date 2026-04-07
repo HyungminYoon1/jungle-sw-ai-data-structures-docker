@@ -106,7 +106,26 @@ int countOneChildNodes(BTNode *node)
 
 {
     /* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* 한국어: 여기에 코드를 작성하세요 */
+
+    // 요구사항: 자식이 정확히 1개인 노드의 개수를 세는 것
+
+    // 종료 조건: 빈 노드는 셀 대상이 없으므로 0 반환
+    if (node == NULL) {
+        return 0;
+    }
+
+    // 왼쪽 서브트리와 오른쪽 서브트리에서 조건을 만족하는 노드 수 계산
+    int left = countOneChildNodes(node->left);
+    int right = countOneChildNodes(node->right);
+
+    // 현재 노드가 자식이 정확히 1개이면 현재 노드를 포함해서 1을 더한 값을 반환.
+    if ((node->left != NULL && node->right == NULL) || (node->left == NULL && node->right != NULL)) {
+        return 1 + left + right;
+    }
+
+    // 현재 노드의 자식 갯수가 1개가 아니라면(자식이 없거나 자식이 2개인 노드) 자식 서브트리 개수만 반환
+    return left + right;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

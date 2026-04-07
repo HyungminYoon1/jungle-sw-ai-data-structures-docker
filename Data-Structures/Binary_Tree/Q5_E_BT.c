@@ -18,7 +18,7 @@ typedef struct _btnode
     struct _btnode *left;
     struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
-// 한국어: BTNode의 정의는 변경하지 마세요
+            // 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -110,7 +110,29 @@ int main()
 void mirrorTree(BTNode *node)
 {
 	/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* 한국어: 여기에 코드를 작성하세요 */
+
+    // 요구사항: 현재 이진트리를 좌우 반전한 미러 트리로 바꾸는 것
+
+    if (node == NULL) {
+        return;
+    }
+
+    // 종료 조건: 자식이 없음 (*리프 노드는 교환해도 변화가 없기에 이 문장은 삭제 가능)
+    /* 
+    if (node->left == NULL && node->right == NULL) {
+        return;
+    } 
+    */
+
+    // 재귀 탐색
+    mirrorTree(node->left);
+    mirrorTree(node->right);
+
+    // 좌우 반전
+    BTNode *temp = node->left;
+    node->left = node->right;
+    node->right = temp;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

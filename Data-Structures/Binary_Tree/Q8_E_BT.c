@@ -18,7 +18,7 @@ typedef struct _btnode
     struct _btnode *left;
     struct _btnode *right;
 } BTNode;   // You should not change the definition of BTNode
-// 한국어: BTNode의 정의는 변경하지 마세요
+            // 한국어: BTNode의 정의는 변경하지 마세요
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -107,7 +107,30 @@ int main()
 int hasGreatGrandchild(BTNode *node)
 {
 	/* add your code here */
-/* 한국어: 여기에 코드를 작성하세요 */
+    /* 한국어: 여기에 코드를 작성하세요 */
+
+    // 요구사항: 적어도 한 명의 증손자 노드를 가진 노드들의 값을 출력
+    // 어떤 노드에서 아래로 3레벨 이상 내려갈 수 있으면 해당 노드를 선택(본인의 레벨이 4 이상인 노드)
+
+    // 노드가 없으면 레벨 0
+    if (node == NULL) {
+        return 0;
+    }
+
+    // 재귀 탐색
+    int leftLevel = hasGreatGrandchild(node->left);
+    int rightLevel = hasGreatGrandchild(node->right);
+
+    // 부모의 레벨은 자식의 최고레벨 + 1
+    int nodeLevel = (leftLevel > rightLevel ? leftLevel : rightLevel) + 1;
+
+    // 만약 노드의 레벨이 4 이상이면 값을 출력
+    if (nodeLevel >= 4) {
+        printf("%d ", node->item);
+    }
+
+    // 자기 레벨 반환
+    return nodeLevel;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
