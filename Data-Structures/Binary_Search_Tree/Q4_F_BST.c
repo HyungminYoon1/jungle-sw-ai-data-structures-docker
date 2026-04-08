@@ -105,14 +105,6 @@ void postOrderIterativeS1(BSTNode *root)
 
 	// 요구사항: BST의 post-order 순회 결과를 반복형(iterative)으로 출력 (left -> right -> root)
 
-	if (root == NULL) {
-		return;
-	}
-
-	// 스택 초기화
-	Stack s;
-    s.top = NULL;
-	
 	// 이 노드를 지금 출력해도 되는지를 판단하는 로직: 
 	// 루트 -> 오른쪽 -> 왼쪽 순으로 집어 넣어서 마지막 노드(가장 큰 레벨의 가장 좌측 노드)까지 모두 스택에 넣음.
 	/*
@@ -123,6 +115,11 @@ void postOrderIterativeS1(BSTNode *root)
 	4) 왼쪽과 오른쪽이 모두 끝난 경우에만 그 노드를 출력하고 pop합니다.
 	*/
 
+	if (root == NULL) {
+		return;
+	}
+
+	// 스택 초기화
 	Stack s;
     s.top = NULL;
 
